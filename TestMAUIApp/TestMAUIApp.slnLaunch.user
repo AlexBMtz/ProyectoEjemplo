@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Nuevo perfil",
+    "Projects": [
+      {
+        "Path": "..\\TestMAUIAppApi\\TestMAUIAppApi.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "TestMAUIApp.csproj",
+        "Action": "Start",
+        "DebugTarget": "OPPO CPH2205 (Android 13.0 - API 33)"
+      }
+    ]
+  }
+]

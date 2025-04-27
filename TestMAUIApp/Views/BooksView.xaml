@@ -1,0 +1,47 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestMAUIApp.Views.BooksView"
+             Title="Books"
+             xmlns:vm="clr-namespace:TestMAUIApp.ViewModels"
+             x:DataType="vm:BooksViewModel"
+             xmlns:data="clr-namespace:SharedModels.Models.DTO.OutputDTO;assembly=SharedModels"
+             Shell.FlyoutBehavior="Flyout">
+
+    <Grid RowDefinitions="Auto,*"
+          ColumnDefinitions="*">
+        <Button Grid.Row="0"
+                Grid.Column="0"
+                Text="Add New Part"
+                Margin="20, 10, 20, 10"
+                Command="{Binding AddNewBookCommand}" />
+
+        <RefreshView Grid.Row="1"
+                     Grid.Column="0"
+                     IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding LoadDataCommand}">
+            <CollectionView ItemsSource="{Binding Books}"
+                            SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding BookSelectedCommand}"
+                            SelectionMode="Single"
+                            Margin="30,20,30,30">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="20" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="data:BookOutputDTO">
+                        <VerticalStackLayout Padding="15,10"
+                                             Margin="10,5,10,5">
+                            <Label Text="{Binding Name, StringFormat='Book: {0}'}"
+                                   TextColor="White" />
+                            <Label Text="{Binding PublishingYear, StringFormat='Publishing Year: {0}'}" />
+                            <Label Text="{Binding Author, StringFormat='Author: {0}'}" />
+                            <Label Text="{Binding Editorial, StringFormat='Editorial: {0}'}" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+
+</ContentPage>
